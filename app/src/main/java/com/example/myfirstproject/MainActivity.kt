@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             if (peso != null && estatura != null && estatura > 0) {
                 val imc = peso / (estatura * estatura)
                 val mensaje = when {
-                    imc < 18.5 -> "Bajo peso"
+                    imc < 18.5 -> "Bajo pesoo"
                     imc < 25 -> "Peso normal"
                     imc < 30 -> "Sobrepeso"
                     else -> "Obesidad"

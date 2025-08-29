@@ -12,7 +12,7 @@
         android:layout_width="257dp"
         android:layout_height="64dp"
         android:ems="10"
-        android:hint="Ingrese su estatura"
+        android:hint="Ingrese su estaturaa"
         android:textColor="@color/white"
         android:background="@color/cardview_dark_background"
         android:inputType="text"
