@@ -8,42 +8,57 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/estatura"
         android:layout_width="257dp"
         android:layout_height="64dp"
-        android:background="@color/cardview_dark_background"
         android:ems="10"
-        android:hint="Nombres completos"
-        android:inputType="text"
+        android:hint="Ingrese su estatura"
         android:textColor="@color/white"
+        android:background="@color/cardview_dark_background"
+        android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.376"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.618" />
+        app:layout_constraintVertical_bias="0.361" />
+
+    <EditText
+        android:id="@+id/peso"
+        android:layout_width="257dp"
+        android:layout_height="64dp"
+        android:ems="10"
+        android:hint="Ingrese su peso"
+        android:inputType="text"
+        android:background="@color/cardview_dark_background"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.737" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="295dp"
-        android:layout_height="53dp"
-        android:text="Mostrar Nombre"
-        android:background="@color/black"
+        android:layout_width="283dp"
+        android:layout_height="39dp"
+        android:text="Calcular IMC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.256" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="248dp"
-        android:text="Bienvenido"
+        android:layout_marginTop="124dp"
+        android:text="Calculo IMC"
+        android:background="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.451"
+        app:layout_constraintHorizontal_bias="0.467"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
 
