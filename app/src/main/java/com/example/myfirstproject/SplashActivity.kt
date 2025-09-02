@@ -15,6 +15,6 @@ class SplashActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             startActivity(Intent(this, MainActivity::class.java))
             finish() // Cierra el Splash para que no regrese al presionar "back"
-        }, 4000)
+        }, 2000)
     }
 }
