@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.button)
         val textView = findViewById<TextView>(R.id.textView3)
         val botonHistorico = findViewById<ImageButton>(R.id.botonHistoricos)
+        val botonUsuario = findViewById<ImageButton>(R.id.botonusuario)
+
         // Inicializar BD
         dbHelper = IMCDatabaseHelper(this)
 
@@ -45,23 +47,25 @@ class MainActivity : AppCompatActivity() {
                 // Guardar en BD
                 val fecha = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
                 val hora = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
-                dbHelper.insertarRegistro(fecha, hora, imc, mensaje)
+                val usuario = dbHelper.obtenerUsuario() ?: "Desconocido"
+
+                dbHelper.insertarRegistro(fecha, hora, imc, mensaje, usuario)
 
                 Toast.makeText(this, "Registro guardado", Toast.LENGTH_SHORT).show()
-
-                // Ir a históricos (opcional, también puedes dejar un botón independiente)
-                val intent = Intent(this, HistoricosActivity::class.java)
-                startActivity(intent)
 
             } else {
                 Toast.makeText(this, "Por favor ingresa peso y estatura válidos", Toast.LENGTH_SHORT).show()
             }
         }
 
+        // Botón para abrir históricos
         botonHistorico.setOnClickListener {
             val intent = Intent(this, HistoricosActivity::class.java)
             startActivity(intent)
         }
-
+        botonUsuario.setOnClickListener {
+            val intent = Intent(this, RegistrarUsuarioActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

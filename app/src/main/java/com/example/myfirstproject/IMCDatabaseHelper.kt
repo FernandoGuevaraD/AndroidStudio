@@ -10,58 +10,95 @@ class IMCDatabaseHelper(context: Context) :
 
     companion object {
         private const val DATABASE_NAME = "imc.db"
-        private const val DATABASE_VERSION = 1
-        private const val TABLE_NAME = "historicos"
-        private const val COLUMN_ID = "id"
-        private const val COLUMN_FECHA = "fecha"
-        private const val COLUMN_HORA = "hora"
-        private const val COLUMN_IMC = "imc"
-        private const val COLUMN_ESTADO = "estado"
+        private const val DATABASE_VERSION = 2 // ← sube versión si ya tenías instalada la app
+        private const val TABLE_HISTORICOS = "historicos"
+        private const val TABLE_USUARIO = "usuario"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        val createTable = """
-            CREATE TABLE $TABLE_NAME (
-                $COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                $COLUMN_FECHA TEXT,
-                $COLUMN_HORA TEXT,
-                $COLUMN_IMC REAL,
-                $COLUMN_ESTADO TEXT
+        val createTableHistoricos = """
+            CREATE TABLE $TABLE_HISTORICOS (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                fecha TEXT,
+                hora TEXT,
+                imc REAL,
+                estado TEXT,
+                usuario TEXT
             )
         """.trimIndent()
-        db.execSQL(createTable)
+
+        val createTableUsuario = """
+            CREATE TABLE $TABLE_USUARIO (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                nombre TEXT
+            )
+        """.trimIndent()
+
+        db.execSQL(createTableHistoricos)
+        db.execSQL(createTableUsuario)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        db.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_HISTORICOS")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_USUARIO")
         onCreate(db)
     }
 
-    fun insertarRegistro(fecha: String, hora: String, imc: Float, estado: String) {
+    // -------------------------
+    // Funciones para usuario
+    // -------------------------
+    fun guardarUsuario(nombre: String) {
+        val db = writableDatabase
+        db.execSQL("DELETE FROM $TABLE_USUARIO") // Solo permitimos un usuario activo
+        val values = ContentValues().apply {
+            put("nombre", nombre)
+        }
+        db.insert(TABLE_USUARIO, null, values)
+        db.close()
+    }
+
+    fun obtenerUsuario(): String? {
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT nombre FROM $TABLE_USUARIO LIMIT 1", null)
+        var nombre: String? = null
+        if (cursor.moveToFirst()) {
+            nombre = cursor.getString(0)
+        }
+        cursor.close()
+        db.close()
+        return nombre
+    }
+
+    // -------------------------
+    // Funciones para historicos
+    // -------------------------
+    fun insertarRegistro(fecha: String, hora: String, imc: Float, estado: String, usuario: String) {
         val db = writableDatabase
         val values = ContentValues().apply {
-            put(COLUMN_FECHA, fecha)
-            put(COLUMN_HORA, hora)
-            put(COLUMN_IMC, imc)
-            put(COLUMN_ESTADO, estado)
+            put("fecha", fecha)
+            put("hora", hora)
+            put("imc", imc)
+            put("estado", estado)
+            put("usuario", usuario)
         }
-        db.insert(TABLE_NAME, null, values)
+        db.insert(TABLE_HISTORICOS, null, values)
         db.close()
     }
 
     fun obtenerRegistros(): List<String> {
         val lista = mutableListOf<String>()
         val db = readableDatabase
-        val cursor = db.rawQuery("SELECT * FROM $TABLE_NAME ORDER BY $COLUMN_ID DESC", null)
+        val cursor = db.rawQuery("SELECT * FROM $TABLE_HISTORICOS ORDER BY id DESC", null)
 
         if (cursor.moveToFirst()) {
             do {
-                val fecha = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_FECHA))
-                val hora = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_HORA))
-                val imc = cursor.getFloat(cursor.getColumnIndexOrThrow(COLUMN_IMC))
-                val estado = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ESTADO))
+                val fecha = cursor.getString(cursor.getColumnIndexOrThrow("fecha"))
+                val hora = cursor.getString(cursor.getColumnIndexOrThrow("hora"))
+                val imc = cursor.getFloat(cursor.getColumnIndexOrThrow("imc"))
+                val estado = cursor.getString(cursor.getColumnIndexOrThrow("estado"))
+                val usuario = cursor.getString(cursor.getColumnIndexOrThrow("usuario"))
 
-                lista.add("$fecha $hora\nIMC: %.2f - $estado".format(imc))
+                lista.add("Usuario: $usuario\n$fecha $hora\nIMC: %.2f - $estado".format(imc))
             } while (cursor.moveToNext())
         }
         cursor.close()

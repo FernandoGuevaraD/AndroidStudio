@@ -32,5 +32,8 @@
             android:name=".HistoricosActivity"
             android:exported="true"/>
 
+        <activity android:name=".RegistrarUsuarioActivity" android:exported="true"/>
+
+
     </application>
 </manifest>
