@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">MyFirstProject</string>
+    <string name="peso">Ingrese Su Peso</string>
+    <string name="altura">Ingrese Su Altura</string>
+    <string name="nombre">Ingrese Su Nombre</string>
+    <string name="BotonIMC">CALCULAR IMC</string>
+    <string name="BotonGuaradarUser">Guardar Usuario</string>
+    <string name="Bienvenido">Bienvenido</string>
+    <string name="BotonVolverCalculos">Volver a Cálculos</string>
+    <string name="CalculoIMC">Calculo IMC</string>
+    <string name="bajopeso">Bajo Peso</string>
+    <string name="PesoNormal">Peso Normal</string>
+    <string name="SobrePeso">Sobre Peso</string>
+    <string name="Obesidad">Obesidad</string>
+    <string name="Registroguardado">Registro guardado</string>
+    <string name="Porfavor_ingresa_peso_estatura_válidos">Por favor ingresa peso y estatura válidos</string>
+    <string name="Usuarioguardado">Usuario Guardado</string>
 </resources>

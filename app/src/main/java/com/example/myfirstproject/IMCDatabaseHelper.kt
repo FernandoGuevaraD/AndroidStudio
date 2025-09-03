@@ -98,7 +98,8 @@ class IMCDatabaseHelper(context: Context) :
                 val estado = cursor.getString(cursor.getColumnIndexOrThrow("estado"))
                 val usuario = cursor.getString(cursor.getColumnIndexOrThrow("usuario"))
 
-                lista.add("Usuario: $usuario\n$fecha $hora\nIMC: %.2f - $estado".format(imc))
+                lista.add("User: $usuario\n$fecha $hora\nIMC: %.2f - $estado".format(imc))
+
             } while (cursor.moveToNext())
         }
         cursor.close()

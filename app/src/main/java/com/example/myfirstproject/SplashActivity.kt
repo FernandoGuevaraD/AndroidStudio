@@ -24,6 +24,6 @@ class SplashActivity : AppCompatActivity() {
 
             startActivity(intent)
             finish() // Cierra el Splash para que no regrese al presionar "back"
-        }, 2000) // ← aquí pon 4000 si quieres 4 segundos, ahora tienes 2000 (2 seg)
+        }, 1000) // ← aquí pon 4000 si quieres 4 segundos, ahora tienes 2000 (2 seg)
     }
 }

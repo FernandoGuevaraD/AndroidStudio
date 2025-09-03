@@ -22,13 +22,13 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
             val nombre = editNombre.text.toString().trim()
             if (nombre.isNotEmpty()) {
                 dbHelper.guardarUsuario(nombre)
-                Toast.makeText(this, "Usuario guardado", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.Usuarioguardado), Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
             } else {
-                Toast.makeText(this, "Ingrese un nombre", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.nombre) , Toast.LENGTH_SHORT).show()
             }
         }
 

@@ -11,7 +11,7 @@
         android:id="@+id/editNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ingrese su nombre"
+        android:hint="@string/nombre"
         android:inputType="textPersonName"
         android:padding="10dp"
         android:background="@color/white"
@@ -21,13 +21,13 @@
         android:id="@+id/botonGuardar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Guardar Usuario"
+        android:text="@string/BotonGuaradarUser"
         android:layout_marginTop="20dp"/>
 
     <Button
         android:id="@+id/botonVolver"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Volver a Cálculos"
+        android:text="@string/BotonVolverCalculos"
         android:layout_marginTop="10dp"/>
 </LinearLayout>

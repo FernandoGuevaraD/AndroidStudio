@@ -36,13 +36,13 @@ class MainActivity : AppCompatActivity() {
             if (peso != null && estatura != null && estatura > 0) {
                 val imc = peso / (estatura * estatura)
                 val mensaje = when {
-                    imc < 18.5 -> "Bajo peso"
-                    imc < 25 -> "Peso normal"
-                    imc < 30 -> "Sobrepeso"
-                    else -> "Obesidad"
+                    imc < 18.5 -> getString(R.string.bajopeso)
+                    imc < 25 -> getString(R.string.PesoNormal)
+                    imc < 30 -> getString(R.string.SobrePeso)
+                    else -> getString(R.string.Obesidad)
                 }
 
-                textView.text = "Tu IMC es %.2f: %s".format(imc, mensaje)
+                textView.text = "IMC =  %.2f: %s".format(imc, mensaje)
 
                 // Guardar en BD
                 val fecha = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
@@ -51,10 +51,10 @@ class MainActivity : AppCompatActivity() {
 
                 dbHelper.insertarRegistro(fecha, hora, imc, mensaje, usuario)
 
-                Toast.makeText(this, "Registro guardado", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.Registroguardado), Toast.LENGTH_SHORT).show()
 
             } else {
-                Toast.makeText(this, "Por favor ingresa peso y estatura válidos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.Porfavor_ingresa_peso_estatura_válidos), Toast.LENGTH_SHORT).show()
             }
         }
 
