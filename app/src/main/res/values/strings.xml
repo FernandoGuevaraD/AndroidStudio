@@ -15,4 +15,8 @@
     <string name="Registroguardado">Registro guardado</string>
     <string name="Porfavor_ingresa_peso_estatura_válidos">Por favor ingresa peso y estatura válidos</string>
     <string name="Usuarioguardado">Usuario Guardado</string>
+    <string name="correo">"Ingrese su Correo "</string>
+    <string name="contrasena">Ingrese su Contraseña</string>
+    <string name="Registrar">Registrar</string>
+    <string name="Ingresar">Ingresar</string>
 </resources>

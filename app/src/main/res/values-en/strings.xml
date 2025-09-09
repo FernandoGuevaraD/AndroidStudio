@@ -16,4 +16,8 @@
     <string name="Registroguardado">Saved record</string>
     <string name="Porfavor_ingresa_peso_estatura_válidos">Please enter valid weight and height</string>
     <string name="Usuarioguardado">Saved User</string>
+    <string name="correo">Enter your Email</string>
+    <string name="contrasena">Enter your Password</string>
+    <string name="Registrar">Register</string>
+    <string name="Ingresar">get into</string>
 </resources>
